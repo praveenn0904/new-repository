@@ -1,0 +1,86 @@
+import java.util.Scanner;
+interface Product
+
+{
+   void getProductDetails();
+}
+class Customer
+{
+    int n;
+    int id[]=new int[100];
+    int noi[]=new int[100];
+    int cpn1[]=new int[100];
+   // int cpn2[]=new int[100];
+    String na[]=new String[100];
+    String pn1[]=new String[100];
+    int tot[]=new int[100];
+    //String pn2[]=new String[100];
+ void getProductDetail()
+    {
+        Scanner o=new Scanner(System.in);
+        n=o.nextInt();
+       
+        for(int i=0;i<n;i++)
+        {
+            id[i]=o.nextInt();
+            na[i]=o.next();
+            noi[i]=o.nextInt();
+            for(int j=0;j<noi[i];j++)
+            {
+                pn1[j]=o.next();
+                cpn1[j]=o.nextInt();
+                tot[i]=tot[i]+cpn1[j];
+            }
+           
+        }
+    }
+    //void showCustomerDetails()
+}
+class OrderOnline extends Customer implements Product
+{
+    //long tot[]=new long[n];
+    void showBill()
+    {
+        for(int j=0;j<n;j++)
+        {
+       
+    if(tot[j]<=10000)
+    {
+        tot[j]=tot[j];
+    }
+    else if(tot[j]>10000 && tot[j]<=30000)
+    {
+        tot[j]=tot[j]+(tot[j]*5/100);
+    }
+    else if(tot[j]>30000 && tot[j]<=50000)
+    {
+        tot[j]=tot[j]+(tot[j]*7/100);
+    }
+    else if(tot[j]>50000)
+    {
+        tot[j]=tot[j]+(tot[j]*9/100);
+    }
+        }
+    }
+    public void getProductDetails()
+    {
+    for(int i=0;i<n;i++)
+    {
+        System.out.println("ID:"+id[i]);
+        System.out.println("NAME:"+na[i]);
+       
+        System.out.println("Bill:"+tot[i]);
+       
+    }
+    }
+}
+class Main
+{
+    public static void main(String args[])
+    {
+        OrderOnline r=new OrderOnline();
+        r.getProductDetail();
+        r.showBill();
+        r.getProductDetails();
+    }
+}
